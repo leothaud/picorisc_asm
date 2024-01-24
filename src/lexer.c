@@ -151,7 +151,7 @@ tokens_t tokenize(FILE *fp)
 	fprintf(stderr, "Unexpected character at line %d column %d. (6)", line, column);
 	exit(1);
       }
-
+      break;
     }
 
     case 'S':
@@ -236,7 +236,7 @@ tokens_t tokenize(FILE *fp)
 	fprintf(stderr, "Unexpected character at line %d column %d. (14)", line, column);
 	exit(1);
       }
-
+      break;
     }
 
     case 'X':
@@ -258,6 +258,7 @@ tokens_t tokenize(FILE *fp)
 	exit(1);
       }
       ADD_TOKEN(XOR, 0);
+      break;
     }
 
     case 'O':

@@ -66,7 +66,7 @@ void parse(FILE *fp, tokens_t tokens)
 	exit(1);
       }
     
-      instr.rd = tokens.tokens[position].type - R0;
+      instr.rs = tokens.tokens[position].type - R0;
       ++position;
       if ((position >= tokens.n_token) ||
 	  ((tokens.tokens[position].type != R0) &&
@@ -77,9 +77,8 @@ void parse(FILE *fp, tokens_t tokens)
 	fprintf(stderr, "Unexpected token.");
 	exit(1);
       }
-      instr.rs = tokens.tokens[position].type - R0;
+      instr.rd = tokens.tokens[position].type - R0;
       instr.imm = 0;
-      fwrite(&instr, sizeof(instruction_t), 1, fp);
       break;
 
     case ADDI:
