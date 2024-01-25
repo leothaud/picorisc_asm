@@ -37,6 +37,7 @@ tokens_t tokenize(FILE *fp)
   while ((c = fgetc(fp)) != EOF)
   {
   loopStart:
+    c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
     if (c == '\n')
     {
       ++line;
@@ -60,6 +61,7 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       switch (c)
       {
       case '0':
@@ -86,6 +88,7 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;  
       if (c != 'M')
       {
@@ -94,6 +97,7 @@ tokens_t tokenize(FILE *fp)
       }
       eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;  
       if (c != 'M')
       {
@@ -108,12 +112,14 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       switch (c)
       {
       case 'D':
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;  
 	if (c != 'D')
 	{
@@ -122,6 +128,7 @@ tokens_t tokenize(FILE *fp)
 	}
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	if (c == 'I')
 	{
 	  ++column;
@@ -137,13 +144,14 @@ tokens_t tokenize(FILE *fp)
       case 'N':
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;  
 	if (c != 'D')
 	{
 	  fprintf(stderr, "Unexpected character at line %d column %d. (5)", line, column);
 	  exit(1);
 	}
-	eof = (c = fgetc(fp));
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	ADD_TOKEN(AND, 0);
 	break;
       
@@ -158,12 +166,14 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       switch (c)
       {
       case 'U':
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'B')
 	{
@@ -176,6 +186,7 @@ tokens_t tokenize(FILE *fp)
       case 'H':
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'I')
 	{
@@ -185,6 +196,7 @@ tokens_t tokenize(FILE *fp)
 
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'F')
 	{
@@ -194,6 +206,7 @@ tokens_t tokenize(FILE *fp)
 
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'T')
 	{
@@ -207,6 +220,7 @@ tokens_t tokenize(FILE *fp)
       case 'T':
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'O')
 	{
@@ -215,6 +229,7 @@ tokens_t tokenize(FILE *fp)
 	}
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'R')
 	{
@@ -223,6 +238,7 @@ tokens_t tokenize(FILE *fp)
 	}
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'E')
 	{
@@ -243,6 +259,7 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       if (c != 'O')
       {
@@ -251,6 +268,7 @@ tokens_t tokenize(FILE *fp)
       }
       eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       if (c != 'R')
       {
@@ -265,6 +283,7 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       if (c != 'R')
       {
@@ -273,6 +292,7 @@ tokens_t tokenize(FILE *fp)
       }
 
       eof = (c = fgetc(fp));
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       if (eof)
       {
 	ADD_TOKEN(OR, 0);
@@ -286,6 +306,7 @@ tokens_t tokenize(FILE *fp)
       case 'H':
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'I')
 	{
@@ -307,6 +328,7 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       if (c != 'O')
       {
@@ -315,6 +337,7 @@ tokens_t tokenize(FILE *fp)
       }
       eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       if (c != 'A')
       {
@@ -323,6 +346,7 @@ tokens_t tokenize(FILE *fp)
       }
       eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       if (c != 'D')
       {
@@ -337,12 +361,14 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       switch (c)
       {
       case 'L':
 	eof = (c = fgetc(fp));
 	CHECK_EOF(eof);
+	c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	++column;
 	if (c != 'T')
 	{
@@ -365,11 +391,11 @@ tokens_t tokenize(FILE *fp)
     {
       int8_t eof = (c = fgetc(fp));
       CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
       ++column;
       uint16_t val = 0;
       switch (c)
       {
-      case 'b':
       case 'B':
       {
 	uint8_t brk = 1;
@@ -381,6 +407,7 @@ tokens_t tokenize(FILE *fp)
 	    ADD_TOKEN(IMMEDIATE, val);
 	    return tokens;
 	  }
+	  c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	  if ((c == '0') || (c == '1'))
 	  {
 	    val = val<<1;
@@ -395,7 +422,6 @@ tokens_t tokenize(FILE *fp)
 	break;
       }
 
-      case 'd':
       case 'D':
       {
 	uint8_t brk = 1;
@@ -407,6 +433,7 @@ tokens_t tokenize(FILE *fp)
 	    ADD_TOKEN(IMMEDIATE, val);
 	    return tokens;
 	  }
+	  c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 	  if ((c >= '0') && (c <= '9'))
 	  {
 	    val = val * 10 + (c - '0');
@@ -419,7 +446,6 @@ tokens_t tokenize(FILE *fp)
 	} while (brk);
 	break;
       }
-      case 'x':
       case 'X':
       {
 	uint8_t brk = 1;
@@ -431,6 +457,7 @@ tokens_t tokenize(FILE *fp)
 	    ADD_TOKEN(IMMEDIATE, val);
 	    return tokens;
 	  }
+	  c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
 
 	  if (((c >= '0') && (c <= '9')) ||
 	      ((c >= 'a') && (c <= 'f')) ||
