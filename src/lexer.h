@@ -25,7 +25,7 @@ typedef struct
     R0 = 14, //
     R1 = 15,//
     R2 = 16,//
-    R3 = 17,//
+    PC = 17,//
     IMMEDIATE
   } type;
   uint16_t imm;

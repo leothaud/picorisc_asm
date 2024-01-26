@@ -90,9 +90,6 @@ tokens_t tokenize(FILE *fp)
       case '2':
 	ADD_TOKEN(R2, 0);
 	break;
-      case '3':
-	ADD_TOKEN(R3, 0);
-	break;
       default:
 	fprintf(stderr, "Unexpected character at line %d column %d. (1)", line, column);
 	exit(1);
@@ -509,6 +506,21 @@ tokens_t tokenize(FILE *fp)
       }
       }
       ADD_TOKEN(IMMEDIATE, val);
+      break;
+    }
+
+    case 'P':
+    {
+      int8_t eof = (c = fgetc(fp));
+      CHECK_EOF(eof);
+      c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
+      ++column;
+      if (c != 'C')
+      {
+	fprintf(stderr, "Unexpected character at line %d column %d. (19)", line, column);
+	exit(1);
+      }
+      ADD_TOKEN(PC, 0);
       break;
     }
 

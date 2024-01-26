@@ -30,7 +30,7 @@ void parse(FILE *fp, tokens_t tokens)
 	  ((tokens.tokens[position].type != R0) &&
 	   (tokens.tokens[position].type != R1) &&
 	   (tokens.tokens[position].type != R2) &&
-	   (tokens.tokens[position].type != R3)))
+	   (tokens.tokens[position].type != PC)))
       {
 	fprintf(stderr, "Unexpected token. 1 (%d)\n", tokens.tokens[position].type);
 	exit(1);
@@ -60,7 +60,7 @@ void parse(FILE *fp, tokens_t tokens)
 	  ((tokens.tokens[position].type != R0) &&
 	   (tokens.tokens[position].type != R1) &&
 	   (tokens.tokens[position].type != R2) &&
-	   (tokens.tokens[position].type != R3)))
+	   (tokens.tokens[position].type != PC)))
       {
 	fprintf(stderr, "Unexpected token. 3");
 	exit(1);
@@ -72,7 +72,7 @@ void parse(FILE *fp, tokens_t tokens)
 	  ((tokens.tokens[position].type != R0) &&
 	   (tokens.tokens[position].type != R1) &&
 	   (tokens.tokens[position].type != R2) &&
-	   (tokens.tokens[position].type != R3)))
+	   (tokens.tokens[position].type != PC)))
       {
 	fprintf(stderr, "Unexpected token. 4");
 	exit(1);
@@ -89,7 +89,7 @@ void parse(FILE *fp, tokens_t tokens)
 	  ((tokens.tokens[position].type != R0) &&
 	   (tokens.tokens[position].type != R1) &&
 	   (tokens.tokens[position].type != R2) &&
-	   (tokens.tokens[position].type != R3)))
+	   (tokens.tokens[position].type != PC)))
       {
 	fprintf(stderr, "Unexpected token. 5");
 	exit(1);
@@ -101,7 +101,7 @@ void parse(FILE *fp, tokens_t tokens)
 	  ((tokens.tokens[position].type != R0) &&
 	   (tokens.tokens[position].type != R1) &&
 	   (tokens.tokens[position].type != R2) &&
-	   (tokens.tokens[position].type != R3)))
+	   (tokens.tokens[position].type != PC)))
       {
 	fprintf(stderr, "Unexpected token. 6");
 	exit(1);
@@ -123,7 +123,7 @@ void parse(FILE *fp, tokens_t tokens)
 	  ((tokens.tokens[position].type != R0) &&
 	   (tokens.tokens[position].type != R1) &&
 	   (tokens.tokens[position].type != R2) &&
-	   (tokens.tokens[position].type != R3)))
+	   (tokens.tokens[position].type != PC)))
       {
 	fprintf(stderr, "Unexpected token. 8");
 	exit(1);
@@ -137,7 +137,10 @@ void parse(FILE *fp, tokens_t tokens)
       fprintf(stderr, "Unexpected token. 9");
       exit(1);
     }
+#ifdef DEBUG
     print_binary(* (uint16_t*)&instr);
+#endif
+    
     fwrite(&instr, sizeof(uint16_t), 1, fp);
     ++position;
   }
