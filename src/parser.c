@@ -32,7 +32,7 @@ void parse(FILE *fp, tokens_t tokens)
 	   (tokens.tokens[position].type != R2) &&
 	   (tokens.tokens[position].type != R3)))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 1 (%d)\n", tokens.tokens[position].type);
 	exit(1);
       }
     
@@ -42,7 +42,7 @@ void parse(FILE *fp, tokens_t tokens)
       if ((position >= tokens.n_token) ||
 	  (tokens.tokens[position].type != IMMEDIATE))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 2");
 	exit(1);
       }
       instr.imm = tokens.tokens[position].imm;
@@ -62,11 +62,11 @@ void parse(FILE *fp, tokens_t tokens)
 	   (tokens.tokens[position].type != R2) &&
 	   (tokens.tokens[position].type != R3)))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 3");
 	exit(1);
       }
     
-      instr.rs = tokens.tokens[position].type - R0;
+      instr.rd = tokens.tokens[position].type - R0;
       ++position;
       if ((position >= tokens.n_token) ||
 	  ((tokens.tokens[position].type != R0) &&
@@ -74,10 +74,10 @@ void parse(FILE *fp, tokens_t tokens)
 	   (tokens.tokens[position].type != R2) &&
 	   (tokens.tokens[position].type != R3)))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 4");
 	exit(1);
       }
-      instr.rd = tokens.tokens[position].type - R0;
+      instr.rs = tokens.tokens[position].type - R0;
       instr.imm = 0;
       break;
 
@@ -91,7 +91,7 @@ void parse(FILE *fp, tokens_t tokens)
 	   (tokens.tokens[position].type != R2) &&
 	   (tokens.tokens[position].type != R3)))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 5");
 	exit(1);
       }
     
@@ -103,7 +103,7 @@ void parse(FILE *fp, tokens_t tokens)
 	   (tokens.tokens[position].type != R2) &&
 	   (tokens.tokens[position].type != R3)))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 6");
 	exit(1);
       }
       instr.rs = tokens.tokens[position].type - R0;
@@ -111,7 +111,7 @@ void parse(FILE *fp, tokens_t tokens)
       if ((position >= tokens.n_token) ||
 	  (tokens.tokens[position].type != IMMEDIATE))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 7");
 	exit(1);
       }
       instr.imm = tokens.tokens[position].imm;
@@ -125,7 +125,7 @@ void parse(FILE *fp, tokens_t tokens)
 	   (tokens.tokens[position].type != R2) &&
 	   (tokens.tokens[position].type != R3)))
       {
-	fprintf(stderr, "Unexpected token.");
+	fprintf(stderr, "Unexpected token. 8");
 	exit(1);
       }
       instr.rd = tokens.tokens[position].type - R0;
@@ -134,7 +134,7 @@ void parse(FILE *fp, tokens_t tokens)
       break;
 
     default:
-      fprintf(stderr, "Unexpected token.");
+      fprintf(stderr, "Unexpected token. 9");
       exit(1);
     }
     print_binary(* (uint16_t*)&instr);

@@ -26,6 +26,8 @@ int main(int argc, char **argv)
   }
 
   parse(f_out, tokenize(f_in));
+  uint16_t tmp = ~((uint16_t)0);
+  fwrite(&tmp, sizeof(uint16_t), 1, f_out); // add undefined instruction at the end to stop simulator
   fclose(f_in);
   fclose(f_out);
   return 0;

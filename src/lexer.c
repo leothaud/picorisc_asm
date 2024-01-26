@@ -10,6 +10,8 @@
     exit(1);					\
   }
 
+#ifdef DEBUG
+
 #define ADD_TOKEN(TKN, IMM)					\
   if (tokens.n_token == tokens_capacity * BLOCK_SIZE)		\
   {								\
@@ -20,9 +22,24 @@
   }								\
   tokens.tokens[tokens.n_token].type = TKN;			\
   tokens.tokens[tokens.n_token].imm = IMM;			\
-  ++tokens.n_token;
+  ++tokens.n_token;						\
+  printf("Adding token %d\n", TKN)
 
+#else
 
+#define ADD_TOKEN(TKN, IMM)					\
+  if (tokens.n_token == tokens_capacity * BLOCK_SIZE)		\
+  {								\
+    ++tokens_capacity;						\
+    tokens.tokens = realloc(tokens.tokens,			\
+			    (tokens_capacity * BLOCK_SIZE)	\
+			    * sizeof(token_t));			\
+  }								\
+  tokens.tokens[tokens.n_token].type = TKN;			\
+  tokens.tokens[tokens.n_token].imm = IMM;			\
+  ++tokens.n_token
+
+#endif
 
 tokens_t tokenize(FILE *fp)
 {
@@ -293,7 +310,7 @@ tokens_t tokenize(FILE *fp)
 
       eof = (c = fgetc(fp));
       c = ((c >= 'a') && (c <= 'z')) ? c + 'A' - 'a' : c;
-      if (eof)
+      if (eof == EOF)
       {
 	ADD_TOKEN(OR, 0);
 	goto loopEnd;
